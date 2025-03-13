@@ -11,9 +11,14 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <limits>
 
 ScalarConverter::ScalarConverter() {
 
+}
+
+ScalarConverter::~ScalarConverter() {
+	std::cout << "Destructor has been called!" << std::endl;
 }
 
 ScalarConverter::ScalarConverter(std::string type) {
@@ -195,4 +200,89 @@ double ScalarConverter::set_double(const std::string &type) {
 	}
 	else
 		return ((double)temp);
+}
+
+void ScalarConverter::convert_to_int(const std::string &str) {
+	std::stringstream str_str(str);
+	str_str >> convert.i;
+
+	if (str_str.fail()) {
+		convertion_table[IS_INT].stats = FAILED_CONVERTION;
+		return ;
+	}
+
+	convertion_table[IS_INT].stats = CONVERTED;
+
+	convert.c = static_cast<char>(convert.i);
+	convertion_table[IS_CHAR].stats = CONVERTED;
+
+	convert.f = static_cast<float>(convert.i);
+	convertion_table[IS_FLOAT].stats = CONVERTED;
+
+	convert.d = static_cast<double>(convert.i);
+	convertion_table[IS_DOUBLE].stats = CONVERTED;
+}
+
+void ScalarConverter::convert_to_double(const std::string &str) {
+	if (str == "+inf" || str == "-inf" || str == "nan") {
+		convert.d = std::stod(str);
+	} else {
+		convert.d = set_double(str);
+	}
+
+	convertion_table[IS_DOUBLE].stats = CONVERTED;
+
+	convert.i = static_cast<int>(convert.d);
+	if (convert.i != static_cast<long long>(convert.d)) {
+		convertion_table[IS_INT].stats = NOT_CONVERTED;
+	} else {
+		convertion_table[IS_INT].stats = CONVERTED;
+	}
+
+	convert.c = static_cast<char>(convert.d);
+	convertion_table[IS_CHAR].stats = set_status_char(convert.c);
+
+	convert.f = static_cast<float>(convert.d);
+	convertion_table[IS_FLOAT].stats = CONVERTED;
+}
+
+void ScalarConverter::not_convertable(const std::string &str) {
+	(void)str;
+	for (int i = 0; i < 4; i++) {
+		convertion_table[i].stats = FAILED_CONVERTION;
+	}
+}
+
+void ScalarConverter::print_message() const {
+	std::cout << "Convertion : " << std::endl;
+
+	std::cout << "char: ";
+	if (convertion_table[IS_CHAR].stats == CONVERTED){
+		std::cout << "'" << convert.c << "'" << std::endl;
+	} else if (convertion_table[IS_CHAR].stats == NOT_CONVERTED) {
+		std::cout << "Non dispayable" << std::endl;
+	} else {
+		std::cout << "Imposible!" << std::endl;
+	}
+
+	std::cout << "int: ";
+	if (convertion_table[IS_INT].stats == CONVERTED) {
+		std::cout << convert.i << std::endl;
+	} else {
+		std::cout << "Imposible!" << std::endl;
+	}
+
+	std::cout << "float: ";
+	if (convertion_table[IS_FLOAT].stats == CONVERTED) {
+		std::cout << std::fixed << std::setprecision(1) << convert.f << "f" << std::endl;
+	} else {
+		std::cout << "Imposible!" << std::endl;
+	}
+
+	std::cout << "double: ";
+	if (convertion_table[IS_DOUBLE].stats == CONVERTED) {
+		std::cout << std::fixed << std::setprecision(1) << convert.d << "d" << std::endl;
+	} else {
+		std::cout << "Imposible!" << std::endl;
+	}
 }
