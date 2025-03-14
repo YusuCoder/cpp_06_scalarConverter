@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:15:09 by rustam            #+#    #+#             */
-/*   Updated: 2025/03/14 18:32:15 by ryusupov         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:00:43 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void test_conversion(const std::string &input) {
 int main() {
     test_conversion("42");       // Integer
     test_conversion("3.14");     // Double
-    test_conversion("42.0f");    // Float
+    test_conversion("42.0");    // Float
     test_conversion("a");        // Character
     test_conversion("-inff");    // Special float infinity case for overflow
     test_conversion("+inf");     // Special double infinity case for overflow
