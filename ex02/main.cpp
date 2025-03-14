@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 20:29:35 by ryusupov          #+#    #+#             */
-/*   Updated: 2025/02/21 20:55:45 by ryusupov         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:56:59 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "B.hpp"
 #include "C.hpp"
 #include "Base.hpp"
+#include <ctime>
 
 int main(){
 	Base *p;
