@@ -6,7 +6,7 @@
 #    By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/29 13:44:30 by ryusupov          #+#    #+#              #
-#    Updated: 2024/12/29 13:45:04 by ryusupov         ###   ########.fr        #
+#    Updated: 2025/03/14 15:34:29 by ryusupov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME    := scalarConverter
 SRC     := main.cpp \
 			ScalarConverter.cpp
 GPP     := g++
-CFLAGS  := -Wall -Wextra -Werror -std=c++17
+CFLAGS  := -Wall -Wextra -Werror -std=c++17 -g
 INC     := -I inc
 OBJ_D   := obj
 OBJ     := $(SRC:%.cpp=$(OBJ_D)/%.o)

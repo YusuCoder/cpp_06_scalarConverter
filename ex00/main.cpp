@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rustam <rustam@student.42.fr>              #+#  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-13 14:15:09 by rustam            #+#    #+#             */
-/*   Updated: 2025-03-13 14:15:09 by rustam           ###   ########.fr       */
+/*   Created: 2025/03/13 14:15:09 by rustam            #+#    #+#             */
+/*   Updated: 2025/03/14 15:40:07 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ScalarConverter.hpp"
+
 
 #include <iostream>
 #include "ScalarConverter.hpp"

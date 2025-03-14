@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 14:43:34 by ryusupov          #+#    #+#             */
-/*   Updated: 2025/03/14 15:23:08 by ryusupov         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:35:55 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ ScalarConverter::ScalarConverter(std::string type) {
 	convertion_table[IS_INT].converting = &ScalarConverter::convert_to_int;
 	convertion_table[IS_DOUBLE].converting = &ScalarConverter::convert_to_double;
 	convertion_table[IS_FLOAT].converting = &ScalarConverter::convert_to_float;
-	(this->*(convertion_table[get_type(type)].converting))(type);
+	t_data_types type_enum = get_type(type);
+	if (type_enum == IS_NOT_TYPE) {
+		not_convertable(type);
+	} else {
+		(this->*(convertion_table[type_enum].converting))(type);
+	}
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter &src) {
@@ -57,7 +62,8 @@ ScalarConverter::t_data_types ScalarConverter::get_type(const std::string &type)
 	else if (is_float(type))
 		return (IS_FLOAT);
 	else
-	 	return(IS_NOT_TYPE);
+		return(IS_NOT_TYPE);
+
 }
 
 int	ScalarConverter::is_char(const std::string &str) {
